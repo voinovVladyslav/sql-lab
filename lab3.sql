@@ -73,6 +73,7 @@ set book_date = current_date()
 where book_date is null;
 
 -- #20
+SET SQL_SAFE_UPDATES = 0;
 update books
-set book_novelty = "yes"
+set book_novelty = "Yes"
 where year(book_date) > 2005;
