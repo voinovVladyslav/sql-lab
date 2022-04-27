@@ -12,9 +12,10 @@ select * from books
 order by book_id
 limit 10;
 
--- #5 wrong
+-- #5
 select * from books
-order by book_id;
+order by book_id
+limit (select floor(count(*)*0.1) from books);
 
 -- #6
 select distinct book_item from books;
