@@ -21,7 +21,7 @@ order by theme_name, category_name;
 -- #5
 select book_name, publisher_name from book
 join publisher on publisher.publisher_id = book.publisher_id
-where year(book_date) > 2000;
+where year(book_date) > 2000 and publisher_name like "%BHV%";
 
 -- №6
 select sum(book_pages) as all_pages, category_name from book
@@ -80,7 +80,7 @@ order by book_price;
 select book_name from book
 where category_id in (
 select category_id from category
-where category_name = 'C&C++'
+where category_name like '%C++%'
 );
 
 -- #14
@@ -99,10 +99,10 @@ where b.publisher_id in (
 );
 
 -- #16
-select category_name from category, (
+select category_name, total_books from category, (
 select count(book_name) as total_books, category_id from book
 group by category_id) as c
-where category.category_id = c.category_id;
+where category.category_id = c.category_id and total_books >= 3;
 
 -- #17
 select book_name from book
